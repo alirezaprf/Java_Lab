@@ -9,27 +9,68 @@ import java.util.ArrayList;
  */
 public class MusicCollection
 {
-    // An ArrayList for storing the file names of music files.
-    private ArrayList<String> files;
+    // An ArrayList for storing the music files.
+    private ArrayList<Music> musics;
     // A player for the music files.
     private MusicPlayer player;
+
+
+
+
+
+
+    //////////////////////////
+
+     
+    private ArrayList<Music> favorites;
+    /////////////////////////
+
+
+
+
+
+
         
     /**
      * Create a MusicCollection
      */
     public MusicCollection()
     {
-        files=new ArrayList<String>();
+        musics=new ArrayList<Music>();
+        favorites=new ArrayList<Music>();
         player=new MusicPlayer();
+        
     }
     
+
+
+    public void addFavorite(Music music)
+    {
+        favorites.add(music);
+    }
+    public void removeFavorite(Music music)
+    {
+        musics.remove(music);
+    }
+
+    public void search(String namelike) {
+        for(Music m:musics)
+        {
+            if(m.getFile().contains(namelike) || m.getSinger().contains(namelike))
+            {
+                System.out.println(m.print());
+            }
+        }
+    }
+
+
     /**
      * Add a file to the collection.
-     * @param filename The file to be added.
+     * @param music The file to be added.
      */
-    public void addFile(String filename)
+    public void addFile(Music music)
     {
-        files.add(filename);
+        musics.add(music);
     }
     
     /**
@@ -38,7 +79,7 @@ public class MusicCollection
      */
     public int getNumberOfFiles()
     {
-        return files.size();
+        return musics.size();
     }
     
     /**
@@ -48,7 +89,7 @@ public class MusicCollection
     public void listFile(int index)
     {
         ///?????
-        System.out.println(files.get(index));
+        System.out.println(musics.get(index).print());
     }
     
     /**
@@ -56,9 +97,9 @@ public class MusicCollection
      */
     public void listAllFiles()
     {
-        for(String file:files)
+        for(Music music:musics)
         {
-            System.out.println(file);
+            System.out.println(music.print());
         }
         
     }
@@ -71,7 +112,7 @@ public class MusicCollection
     {
         if(this.validIndex(index))
         {
-            files.remove(index);
+            musics.remove(index);
         }
     }
 
@@ -82,7 +123,7 @@ public class MusicCollection
      */
     public void startPlaying(int index)
     {
-        player.startPlaying(files.get(index));
+        player.startPlaying(musics.get(index).getFile());
     }
 
     /**
@@ -102,7 +143,7 @@ public class MusicCollection
      */
     private boolean validIndex(int index)
     {
-        return (index>=0 && index<files.size());
+        return (index>=0 && index<musics.size());
         // The return value.
         // Set according to whether the index is valid or not.
        

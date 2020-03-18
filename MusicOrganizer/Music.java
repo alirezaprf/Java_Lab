@@ -9,6 +9,10 @@ public class Music{
         setSinger(Singer);
         setReleaseYear(Year);
     }
+    public String print()
+    {
+        return file+" By "+singer+" in "+releaseYear;
+    }
     @Override
     public boolean equals(Object obj) {
         // TODO Auto-generated method stub
