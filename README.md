@@ -1,1 +1,1 @@
-# Java_Lab
+Implementing Simple Voting System
