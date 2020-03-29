@@ -48,6 +48,13 @@ public class Voting{
      */
     public void vote(Person person,ArrayList<String> votes)
     {
+        /**
+         * if type is 0 only 1 vote is accepted
+         */
+        if(voters.contains(person) && type==0)
+            return;
+
+            
         voters.add(person);
         LocalDate ld=LocalDate.now();
 
@@ -71,11 +78,19 @@ public class Voting{
     {
         return voters;
     }
-
+    /**
+     *  prints Polls with defualt Function of toString
+     */
     public void printVotes()
     {
         System.out.println(polls.toString());
     }
+
+    /**
+     * 
+     * @return polls
+     */
+
     public HashMap<String,HashSet<Vote>> getPolls() {
         return polls;
     }

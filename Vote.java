@@ -44,7 +44,10 @@ public class Vote{
         return person;
     }
 
-   
+    @Override
+    public String toString() {
+        return person.toString()+" on "+date;
+    }
 
 
 }
