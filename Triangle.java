@@ -32,7 +32,7 @@ public class Triangle extends Polygon {
 
     @Override
     public double calculateArea() {
-        return sides.get(0) * sides.get(1);
+        return sides.get(0) * sides.get(1) * sides.get(2);
     }
 
     @Override
