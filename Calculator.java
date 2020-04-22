@@ -18,7 +18,7 @@ public class Calculator {
         JFrame frame=new JFrame("Simple Calculator ") ;
         frame.setSize(800,800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(1,3,20,20));
+        frame.setLayout(new GridLayout(2,2,20,20));
         ArrayList<JButton> simpleButtons=new ArrayList<>();
         
         simpleButtons.add(new JButton("+"));
