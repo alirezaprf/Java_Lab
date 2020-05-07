@@ -1,4 +1,5 @@
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -8,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import java.awt.*;
+import java.awt.event.*;
 public class Calculator {
     public Calculator()
     {
@@ -129,9 +131,35 @@ public class Calculator {
             }
 
         });
+        KeyAdapter kl=new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                System.out.println(e.getKeyCode());
+                if(e.getKeyCode()==17)//ctrl
+                {
+                    //+
+                    simpleButtons.get(0).doClick();
+                }
+                else if(e.getKeyCode()==16)//shift
+                {
+                    //-
+                    simpleButtons.get(1).doClick();
+                }
+            }
+        };
+        jtx.addKeyListener(kl);
+        jtx2.addKeyListener(kl);
+        frame.addKeyListener(kl);
+        for (int i = 0; i < advanceButtons.size(); i++) {
+            advanceButtons.get(i).addKeyListener(kl);
+        }
         
+        for (int i = 0; i < simpleButtons.size(); i++) {
+            simpleButtons.get(i).addKeyListener(kl);
+        }
 
-
+        
 
         frame.setVisible(true);
 
