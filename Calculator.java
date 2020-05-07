@@ -78,7 +78,7 @@ public class Calculator {
         
         JMenuBar menubar=new JMenuBar();
         JMenu menu=new JMenu("Menu");
-        JMenuItem exit=new JMenuItem("Exit");
+        JMenuItem exit=new JMenuItem("Exit(q)");
         JMenuItem copy=new JMenuItem("Copy Result");
         menubar.add(menu);
         menu.add(copy);
@@ -178,7 +178,7 @@ public class Calculator {
         }
 
         exit.setMnemonic('x');
-        
+
         copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 
         exit.addActionListener(l ->{
@@ -193,7 +193,9 @@ public class Calculator {
 
         }); 
 
-
+        jtx.setToolTipText("Input One");
+        jtx2.setToolTipText("Input two");
+        answer.setToolTipText("your disired result :)");
 
         frame.pack();
         frame.revalidate();
