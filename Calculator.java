@@ -12,12 +12,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import java.awt.datatransfer.*;
+import javafx.scene.input.Clipboard;
+
 import java.awt.*;
 import java.awt.event.*;
 public class Calculator {
     public Calculator()
     {
         JFrame frame=new JFrame("Simple Calculator ") ;
+        frame.setVisible(true);
         frame.setSize(800,800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout());
@@ -172,13 +177,29 @@ public class Calculator {
             simpleButtons.get(i).addKeyListener(kl);
         }
 
-       
+        exit.setMnemonic('x');
+        
+        copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+
+        exit.addActionListener(l ->{
+            System.exit(0);
+        });
+
+        copy.addActionListener(l -> {
+            String res=answer.getText();
+            StringSelection stringSelection = new StringSelection(res);
+            java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
+
+        }); 
+
+
 
         frame.pack();
+        frame.revalidate();
+        
 
-        frame.setVisible(true);
-
-
+        
 
         
         
