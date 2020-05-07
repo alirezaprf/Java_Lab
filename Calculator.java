@@ -2,9 +2,13 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -16,7 +20,7 @@ public class Calculator {
         JFrame frame=new JFrame("Simple Calculator ") ;
         frame.setSize(800,800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(2,2,20,20));
+        frame.setLayout(new GridLayout());
         ArrayList<JButton> simpleButtons=new ArrayList<>();
         
         simpleButtons.add(new JButton("+"));
@@ -67,7 +71,16 @@ public class Calculator {
         JTextField jtx2=new JTextField();
         JLabel answer=new JLabel("Result");
         
-        
+        JMenuBar menubar=new JMenuBar();
+        JMenu menu=new JMenu("Menu");
+        JMenuItem exit=new JMenuItem("Exit");
+        JMenuItem copy=new JMenuItem("Copy Result");
+        menubar.add(menu);
+        menu.add(copy);
+        menu.add(exit);
+
+
+        frame.add(menubar);
         jtx.setVisible(true);
         frame.add(jtx);
         
@@ -135,7 +148,7 @@ public class Calculator {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
-                System.out.println(e.getKeyCode());
+                
                 if(e.getKeyCode()==17)//ctrl
                 {
                     //+
@@ -159,7 +172,9 @@ public class Calculator {
             simpleButtons.get(i).addKeyListener(kl);
         }
 
-        
+       
+
+        frame.pack();
 
         frame.setVisible(true);
 
