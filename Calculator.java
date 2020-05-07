@@ -1,17 +1,13 @@
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-
-import java.awt.GridLayout;
+import java.awt.*;
 public class Calculator {
     public Calculator()
     {
@@ -36,7 +32,7 @@ public class Calculator {
             
             advanceButtons.add(new JButton(string));
         }
-        
+       
         JTabbedPane jtp=new JTabbedPane();
 
         JPanel simple=new JPanel(new GridLayout(4,4,40,40));
@@ -67,7 +63,7 @@ public class Calculator {
 
         JTextField jtx=new JTextField();
         JTextField jtx2=new JTextField();
-
+        JLabel answer=new JLabel("Result");
         
         
         jtx.setVisible(true);
@@ -77,7 +73,71 @@ public class Calculator {
         frame.add(jtx2);
         
         frame.add(jtp);
+        frame.add(answer);
+        
+        
+        
+        //ading action listener
+         //+
+         advanceButtons.get(0).addActionListener(L -> {
+            try {
+                Integer a=Integer.parseInt(jtx.getText());
+                Integer b=Integer.parseInt(jtx2.getText());
+                Integer c=a+b;
+                answer.setText(c.toString());
+            } catch (Exception e) {
+                System.out.println("Enter Numbers");
+            }
+
+        });
+        //-
+        advanceButtons.get(1).addActionListener(L -> {
+            try {
+                Integer a=Integer.parseInt(jtx.getText());
+                Integer b=Integer.parseInt(jtx2.getText());
+                Integer c=a-b;
+                answer.setText(c.toString());
+            } catch (Exception e) {
+                System.out.println("Enter Numbers");
+            }
+
+        });
+        
+
+         //ading action listener
+         //+
+         simpleButtons.get(0).addActionListener(L -> {
+            try {
+                Integer a=Integer.parseInt(jtx.getText());
+                Integer b=Integer.parseInt(jtx2.getText());
+                Integer c=a+b;
+                answer.setText(c.toString());
+            } catch (Exception e) {
+                System.out.println("Enter Numbers");
+            }
+
+        });
+        //-
+        simpleButtons.get(1).addActionListener(L -> {
+            try {
+                Integer a=Integer.parseInt(jtx.getText());
+                Integer b=Integer.parseInt(jtx2.getText());
+                Integer c=a-b;
+                answer.setText(c.toString());
+            } catch (Exception e) {
+                System.out.println("Enter Numbers");
+            }
+
+        });
+        
+
+
+
         frame.setVisible(true);
+
+
+
+        
         
 }
 }
