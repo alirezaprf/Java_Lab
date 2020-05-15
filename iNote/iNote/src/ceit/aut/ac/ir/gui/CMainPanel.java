@@ -107,7 +107,7 @@ public class CMainPanel extends JPanel {
                 //TODO: Phase1: Click on file is handled... Just load content into JTextArea
                 File curr[] = FileUtils.getFilesInDirectory();
                 Note n = FileUtils.fileReader(curr[index]);
-                String content = n.getDate()+"-"+n.getTitle()+"\n"+ n.getContent();
+                String content = n.getContent();
                 
                 openExistingNote(content);
             }
@@ -121,7 +121,9 @@ public class CMainPanel extends JPanel {
         public Component getListCellRendererComponent(JList list, Object object, int index, boolean isSelected, boolean cellHasFocus) {
             if (object instanceof File) {
                 File file = (File) object;
-                setText(file.getName());
+                Note note=FileUtils.fileReader(file);
+                String firstLine=note.getContent().split("\n")[0];
+                setText(file.getName()+"-"+note.getDate()+"-"+firstLine);
                 setIcon(FileSystemView.getFileSystemView().getSystemIcon(file));
                 if (isSelected) {
                     setBackground(list.getSelectionBackground());
