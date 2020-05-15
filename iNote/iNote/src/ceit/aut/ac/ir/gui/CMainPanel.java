@@ -74,6 +74,17 @@ public class CMainPanel extends JPanel {
         updateListGUI();
     }
 
+    public void saveAll()
+    {
+        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+            JTextArea textPanel = (JTextArea) tabbedPane.getComponentAt(i);
+        String note = textPanel.getText();
+        if (!note.isEmpty()) {
+            FileUtils.fileWriter(note);
+        }
+        }
+    }
+
     private JTextArea createTextPanel() {
         JTextArea textPanel = new JTextArea();
         textPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -96,7 +107,7 @@ public class CMainPanel extends JPanel {
                 //TODO: Phase1: Click on file is handled... Just load content into JTextArea
                 File curr[] = FileUtils.getFilesInDirectory();
                 Note n = FileUtils.fileReader(curr[index]);
-                String content = n.getContent();
+                String content = n.getDate()+"-"+n.getTitle()+"\n"+ n.getContent();
                 
                 openExistingNote(content);
             }

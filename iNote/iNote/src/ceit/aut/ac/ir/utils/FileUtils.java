@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 
 import ceit.aut.ac.ir.model.Note;
 
@@ -40,7 +42,19 @@ public class FileUtils {
     }
 
     public static void fileWriter(String content) {
-        Note n=new Note("title", "content", "date");
+        
+        try {
+        String fileName = getProperFileName(content);
+        Note n=new Note(fileName, content, LocalDate.now().toString());
+        FileOutputStream out=new FileOutputStream(new File(NOTES_PATH+fileName));
+        ObjectOutputStream os=new ObjectOutputStream(out);
+        os.writeObject(n);
+        os.flush();
+        os.close();
+            
+        } catch (Exception e) {
+            System.out.println("Save Failed");
+        }
     }
 
     public String readWithStrem(File file)
@@ -64,7 +78,7 @@ public void WriteWithStream(String content)
     //TODO: write content on file
     String fileName = getProperFileName(content);
     System.out.println(fileName);
-    File f=new File("notes\\"+fileName);
+    File f=new File(NOTES_PATH+fileName);
     try {
         f.createNewFile();
         FileWriter fs=new FileWriter(f);
